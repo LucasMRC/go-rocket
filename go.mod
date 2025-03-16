@@ -1,4 +1,4 @@
-module ffmpego
+module go-rocket
 
 go 1.23
 

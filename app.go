@@ -49,21 +49,6 @@ func (a *App) startup(actx context.Context) {
 	ctx = actx
 }
 
-func (a *App) GetScreenObjects() AppResponse[[]runtime.Screen] {
-	screens, err := runtime.ScreenGetAll(ctx)
-	if err != nil {
-		fmt.Println("ERRORRR", err.Error())
-		return AppResponse[[]runtime.Screen]{
-			Response: []runtime.Screen{},
-			Status:   ProcessError,
-		}
-	}
-	return AppResponse[[]runtime.Screen]{
-		Response: screens,
-		Status:   ProcessSuccess,
-	}
-}
-
 func (a *App) StartRecording() AppResponse[any] {
 	fmt.Println("Start recording!")
 	cmd = exec.CommandContext(context.TODO(), "ffmpeg", "-select_region", "1", "-framerate", "25", "-f", "x11grab", "-i", ":0.0", "-y", "/tmp/output.mp4")
