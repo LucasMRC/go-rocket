@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
@@ -39,8 +40,6 @@ var (
 )
 
 func NewApp() *App {
-	fmt.Println(cmd)
-
 	return &App{}
 }
 
@@ -98,6 +97,7 @@ func (a *App) StopRecording() AppResponse[any] {
 			Response: nil,
 		}
 	}
+	time.Sleep(300 * time.Millisecond)
 	path, err := runtime.SaveFileDialog(ctx, runtime.SaveDialogOptions{
 		DefaultFilename: "output.mp4",
 		Title:           "Save recording",
